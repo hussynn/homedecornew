@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Store Settings | Aura Luxury Decor</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Design Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+  <!-- Layout root container -->
+  <div id="admin-layout-root">
+    
+    <!-- Mobile header menu -->
+    <div class="admin-mobile-header">
+      <h2>AURA ADMIN</h2>
+      <button class="admin-hamburger" id="admin-hamburger-toggle" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="admin-layout">
+      <!-- Sidebar Navigation root container -->
+      <aside class="admin-sidebar" id="admin-sidebar-nav"></aside>
+
+      <!-- Main Panel viewport -->
+      <main class="admin-main">
+        <header class="admin-header">
+          <h1>Store Settings</h1>
+        </header>
+
+        <!-- Tabs Navigation -->
+        <div class="settings-tabs">
+          <button class="settings-tab-btn active" data-pane="store-profile">Store Profile</button>
+          <button class="settings-tab-btn" data-pane="payment-upi">Payment & UPI</button>
+          <button class="settings-tab-btn" data-pane="social-channels">Social Links</button>
+          <button class="settings-tab-btn" data-pane="dev-integrations">API Credentials</button>
+        </div>
+
+        <!-- Tab Panes Content -->
+        <div class="table-card" style="padding: 30px;">
+          
+          <!-- Pane 1: Store Profile -->
+          <div class="settings-pane active" id="pane-store-profile">
+            <form id="form-store-profile">
+              <div class="checkout-form-grid" style="margin-bottom: 20px;">
+                <div class="input-group">
+                  <label for="set-store-name">Store Display Name *</label>
+                  <input type="text" id="set-store-name" required placeholder="Aura Luxury Decor">
+                </div>
+                <div class="input-group">
+                  <label for="set-store-phone">WhatsApp/Phone Number *</label>
+                  <input type="text" id="set-store-phone" required placeholder="+91 98765 43210">
+                </div>
+              </div>
+
+              <div class="checkout-form-grid" style="margin-bottom: 20px;">
+                <div class="input-group">
+                  <label for="set-store-email">Support Email *</label>
+                  <input type="email" id="set-store-email" required placeholder="contact@auradecor.com">
+                </div>
+                <div class="input-group form-full-width textarea-group" style="grid-column: span 1;">
+                  <label for="set-store-address">Showroom Physical Address *</label>
+                  <textarea id="set-store-address" rows="2" required placeholder="Street detail, City, State, Pincode"></textarea>
+                </div>
+              </div>
+
+              <div class="input-group form-full-width textarea-group" style="margin-bottom: 20px;">
+                <label for="set-store-map-url">Google Map Embed URL (Copy inside 'src' of iframe embed code) *</label>
+                <textarea id="set-store-map-url" rows="3" required placeholder="https://www.google.com/maps/embed?..."></textarea>
+              </div>
+
+              <!-- Store Logo Management Section -->
+              <div class="input-group" style="margin-bottom: 30px;">
+                <label>Store Logo (Optional)</label>
+                <div class="image-upload-wrapper" style="max-width: 450px;">
+                  <i class="fas fa-image upload-icon"></i>
+                  <div class="upload-text">Upload Store Logo</div>
+                  <div class="upload-hint">Unsigned Cloudinary upload preset must be configured in API Credentials tab.</div>
+                  <input type="file" id="set-logo-file" accept="image/*">
+                </div>
+                
+                <input type="hidden" id="set-logo-url" value="">
+                <div class="image-preview-grid" id="set-logo-preview-container" style="display:none; margin-top: 10px;">
+                  <div class="preview-thumb" style="width:120px; height:120px; padding:5px; background:#FFF; display:flex; align-items:center; justify-content:center; border: 1px solid var(--border-light); border-radius:4px;">
+                    <img id="set-logo-preview-img" src="" alt="Store Logo Preview" style="max-width:100%; max-height:100%; object-fit:contain;">
+                    <button type="button" class="preview-remove-btn" id="remove-logo-btn" title="Delete Logo">&times;</button>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary" style="width:auto; padding: 12px 30px;">
+                <i class="fas fa-save"></i> Save Profile Settings
+              </button>
+            </form>
+          </div>
+
+          <!-- Pane 2: Payment & UPI Settings -->
+          <div class="settings-pane" id="pane-payment-upi">
+            <form id="form-payment-upi">
+              <div class="input-group" style="margin-bottom: 20px; max-width:450px;">
+                <label for="set-upi-id">Merchant UPI ID *</label>
+                <input type="text" id="set-upi-id" required placeholder="auradecor@okaxis">
+              </div>
+
+              <!-- QR Image Upload section -->
+              <div class="input-group" style="margin-bottom: 30px;">
+                <label>UPI payment QR Code Image *</label>
+                <div class="image-upload-wrapper" style="max-width:450px;">
+                  <i class="fas fa-qrcode upload-icon"></i>
+                  <div class="upload-text">Upload UPI payment QR Image</div>
+                  <input type="file" id="set-qr-file" accept="image/*">
+                </div>
+                
+                <input type="hidden" id="set-qr-url" value="">
+                <div class="image-preview-grid" id="set-qr-preview-container" style="display:none;">
+                  <div class="preview-thumb" style="width:150px; height:150px; padding:5px; background:#FFF;">
+                    <img id="set-qr-preview-img" src="" alt="UPI QR preview">
+                    <button type="button" class="preview-remove-btn" id="remove-qr-img-btn">&times;</button>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary" style="width:auto; padding: 12px 30px;">
+                <i class="fas fa-save"></i> Save UPI Configuration
+              </button>
+            </form>
+          </div>
+
+          <!-- Pane 3: Social Links Settings -->
+          <div class="settings-pane" id="pane-social-channels">
+            <form id="form-social-channels">
+              <div class="checkout-form-grid" style="margin-bottom: 20px;">
+                <div class="input-group">
+                  <label for="set-fb-url">Facebook Page URL</label>
+                  <input type="url" id="set-fb-url" placeholder="https://facebook.com/yourpage">
+                </div>
+                <div class="input-group">
+                  <label for="set-ig-url">Instagram Account URL</label>
+                  <input type="url" id="set-ig-url" placeholder="https://instagram.com/youraccount">
+                </div>
+              </div>
+
+              <div class="checkout-form-grid" style="margin-bottom: 30px;">
+                <div class="input-group">
+                  <label for="set-yt-url">YouTube Channel URL</label>
+                  <input type="url" id="set-yt-url" placeholder="https://youtube.com/yourchannel">
+                </div>
+                <div class="input-group">
+                  <label for="set-wa-num">Order WhatsApp Number Call Prefix (Include Country Code without +) *</label>
+                  <input type="text" id="set-wa-num" required placeholder="E.g., 919876543210">
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary" style="width:auto; padding: 12px 30px;">
+                <i class="fas fa-save"></i> Save Social Channels
+              </button>
+            </form>
+          </div>
+
+          <!-- Pane 4: Developer Credentials Settings -->
+          <div class="settings-pane" id="pane-dev-integrations">
+            <form id="form-dev-integrations">
+              <h3 style="font-size:1.1rem; margin-bottom:15px; border-bottom:1px solid var(--border-light); padding-bottom:8px;"><i class="fas fa-fire" style="color:#FFCA28;"></i> Firebase Web SDK Configuration</h3>
+              <p style="font-size:0.8rem; color:var(--text-gray); margin-bottom:20px;">Provide your Firebase web client credentials. These parameters will initialize Auth and Firestore database connections dynamically.</p>
+
+              <div class="checkout-form-grid" style="margin-bottom: 20px;">
+                <div class="input-group">
+                  <label for="firebase-api-key">API Key</label>
+                  <input type="password" id="firebase-api-key" placeholder="AIzaSy...">
+                </div>
+                <div class="input-group">
+                  <label for="firebase-auth-domain">Auth Domain</label>
+                  <input type="text" id="firebase-auth-domain" placeholder="project-id.firebaseapp.com">
+                </div>
+              </div>
+
+              <div class="checkout-form-grid" style="margin-bottom: 20px;">
+                <div class="input-group">
+                  <label for="firebase-project-id">Project ID</label>
+                  <input type="text" id="firebase-project-id" placeholder="project-id">
+                </div>
+                <div class="input-group">
+                  <label for="firebase-storage-bucket">Storage Bucket</label>
+                  <input type="text" id="firebase-storage-bucket" placeholder="project-id.appspot.com">
+                </div>
+              </div>
+
+              <div class="checkout-form-grid" style="margin-bottom: 30px;">
+                <div class="input-group">
+                  <label for="firebase-sender-id">Messaging Sender ID</label>
+                  <input type="text" id="firebase-sender-id" placeholder="87654321098">
+                </div>
+                <div class="input-group">
+                  <label for="firebase-app-id">App ID</label>
+                  <input type="text" id="firebase-app-id" placeholder="1:87654321098:web:7f6e5d4c3b2a">
+                </div>
+              </div>
+
+              <h3 style="font-size:1.1rem; margin-bottom:15px; border-bottom:1px solid var(--border-light); padding-bottom:8px; margin-top:40px;"><i class="fas fa-cloud" style="color:#2088B2;"></i> Cloudinary Image Upload Credentials</h3>
+              <p style="font-size:0.8rem; color:var(--text-gray); margin-bottom:20px;">Provide your Cloudinary Cloud Name and an active Unsigned Upload Preset name to process direct image uploads from these admin pages.</p>
+
+              <div class="checkout-form-grid" style="margin-bottom: 30px;">
+                <div class="input-group">
+                  <label for="cloudinary-cloud-name">Cloud Name</label>
+                  <input type="text" id="cloudinary-cloud-name" placeholder="your_cloud_name">
+                </div>
+                <div class="input-group">
+                  <label for="cloudinary-preset">Unsigned Upload Preset Name</label>
+                  <input type="text" id="cloudinary-preset" placeholder="preset_name">
+                </div>
+              </div>
+
+              <button type="submit" class="btn-primary" style="width:auto; padding: 12px 30px;">
+                <i class="fas fa-plug"></i> Save Credentials & Reconnect
+              </button>
+            </form>
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Dashboard Script controllers module -->
+  <script type="module" src="../js/admin-settings.js"></script>
+</body>
+</html>

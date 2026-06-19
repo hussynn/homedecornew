@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Categories | Aura Luxury Decor</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Design Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+  <!-- Layout root container -->
+  <div id="admin-layout-root">
+    
+    <!-- Mobile header menu -->
+    <div class="admin-mobile-header">
+      <h2>AURA ADMIN</h2>
+      <button class="admin-hamburger" id="admin-hamburger-toggle" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="admin-layout">
+      <!-- Sidebar Navigation root container -->
+      <aside class="admin-sidebar" id="admin-sidebar-nav"></aside>
+
+      <!-- Main Panel viewport -->
+      <main class="admin-main">
+        <header class="admin-header">
+          <h1>Collections Management</h1>
+          <button type="button" class="btn-primary" id="add-category-btn" style="padding: 10px 20px; width:auto;">
+            <i class="fas fa-plus"></i> Add New Category
+          </button>
+        </header>
+
+        <!-- Categories Table Card -->
+        <div class="table-card">
+          <div class="table-header">
+            <h3>All Collections</h3>
+          </div>
+          
+          <div class="admin-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Preview</th>
+                  <th>Category Name</th>
+                  <th>Display Order</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="categories-table-body">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Add/Edit Category Modal dialog -->
+  <div class="admin-modal" id="category-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-title">Add Category</h3>
+        <button class="close-modal-btn" id="close-category-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="category-form">
+          <input type="hidden" id="edit-category-id" value="">
+          
+          <div class="input-group" style="margin-bottom: 20px;">
+            <label for="cat-name">Category Name *</label>
+            <input type="text" id="cat-name" required placeholder="E.g., Designer Wallpaper">
+          </div>
+
+          <div class="input-group" style="margin-bottom: 20px;">
+            <label for="cat-order">Display Order *</label>
+            <input type="number" id="cat-order" min="1" required placeholder="E.g., 1">
+          </div>
+
+          <!-- Image selector wrapper -->
+          <div class="input-group" style="margin-bottom: 20px;">
+            <label>Category Image *</label>
+            <div class="image-upload-wrapper">
+              <i class="fas fa-cloud-upload-alt upload-icon"></i>
+              <div class="upload-text">Click or drag image file here</div>
+              <div class="upload-hint">Supported formats: JPEG, PNG, WEBP (Max 2MB)</div>
+              <input type="file" id="cat-image-file" accept="image/*">
+            </div>
+            
+            <!-- Image previews -->
+            <input type="hidden" id="cat-image-url" value="">
+            <div class="image-preview-grid" id="cat-image-preview-container" style="display:none;">
+              <div class="preview-thumb">
+                <img id="cat-preview-img" src="" alt="Category preview">
+                <button type="button" class="preview-remove-btn" id="remove-cat-img-btn">&times;</button>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex; align-items:center; gap: 10px; margin-top:25px;">
+            <input type="checkbox" id="cat-active" checked style="width:18px; height:18px; accent-color:var(--accent-gold);">
+            <label for="cat-active" style="font-weight:600; font-size:0.9rem; cursor:pointer;">Active (Visible on storefront)</label>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" id="close-modal-footer-btn" style="padding: 10px 20px;">Cancel</button>
+        <button type="submit" form="category-form" class="btn-primary" style="padding: 10px 20px; width:auto;">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Script controllers module -->
+  <script type="module" src="../js/admin-categories.js"></script>
+</body>
+</html>

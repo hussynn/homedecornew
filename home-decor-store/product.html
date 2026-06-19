@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="View product specifications, select custom dimensions, and place orders directly.">
+  <title>Product Details | Aura Luxury Decor</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Core Design Styles -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- Dynamic Header Navigation Root -->
+  <header id="header-root"></header>
+
+  <!-- Main Product details view -->
+  <main class="product-detail-container">
+    <div class="container">
+      
+      <!-- Back Link -->
+      <a href="./index.html#products" class="btn-secondary" style="display:inline-flex; margin-bottom: 30px; align-items:center; gap: 8px; border-radius: 30px; padding: 10px 20px;">
+        <i class="fas fa-arrow-left"></i> Back to Collections
+      </a>
+
+      <div class="product-detail-grid" id="product-detail-root">
+        <!-- RENDERED BY product.js -->
+        
+        <!-- Left: Product Image Gallery -->
+        <div class="product-gallery">
+          <div class="gallery-main-wrapper" id="gallery-main-container">
+            <div class="spinner" style="margin: auto"></div>
+          </div>
+          <div class="gallery-thumbnails" id="gallery-thumbnails-container"></div>
+        </div>
+
+        <!-- Right: Detail Description, specs & ordering -->
+        <div class="product-details-summary">
+          <div class="detail-category" id="detail-cat-name">Loading...</div>
+          <h1 class="detail-title" id="detail-prod-name">Please wait</h1>
+          
+          <div class="detail-price-box" id="detail-price-panel">
+            <!-- Price info -->
+          </div>
+
+          <p class="detail-description" id="detail-desc-text"></p>
+
+          <!-- Specifications Table -->
+          <table class="specifications-table" id="specs-table-root">
+            <!-- Dynamic specs -->
+          </table>
+
+          <!-- Dimensions Selector (Wallpapers, Doors, Floor Mats) -->
+          <div class="dimensions-calculator" id="dimensions-calc-section">
+            <h3 class="calculator-title"><i class="fas fa-ruler-combined"></i> Customize Dimensions</h3>
+            
+            <div class="calculator-grid">
+              <div class="input-group">
+                <label for="dim-width">Width</label>
+                <input type="number" id="dim-width" min="1" step="0.1" value="10" placeholder="Width">
+              </div>
+              <div class="input-group">
+                <label for="dim-height">Height</label>
+                <input type="number" id="dim-height" min="1" step="0.1" value="10" placeholder="Height">
+              </div>
+              <div class="input-group unit-selector">
+                <label>Unit of Measurement</label>
+                <div class="unit-buttons">
+                  <button type="button" class="unit-btn active" data-unit="Feet">Feet</button>
+                  <button type="button" class="unit-btn" data-unit="Inches">Inches</button>
+                  <button type="button" class="unit-btn" data-unit="Cm">Centimeters</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Price calculation indicator -->
+            <div class="price-calculation-preview">
+              <span class="price-preview-label" id="calc-preview-label">Area (100 Sq.Ft) x Rate</span>
+              <span class="price-preview-val" id="calc-preview-price">₹0</span>
+            </div>
+          </div>
+
+          <!-- Checkout CTA Button -->
+          <button type="button" class="btn-primary" id="buy-now-btn">
+            <i class="fas fa-shopping-bag"></i> Buy Now / Place Order
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Sticky Bottom mobile action bar -->
+  <div class="sticky-action-bar" id="mobile-sticky-action">
+    <button type="button" class="btn-primary" id="mobile-buy-now-btn">
+      <i class="fas fa-shopping-bag"></i> Order Customized Size
+    </button>
+  </div>
+
+  <!-- Global Footer Container -->
+  <footer id="footer-root"></footer>
+
+  <!-- Page Controller script -->
+  <script type="module" src="./js/product.js"></script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Products | Aura Luxury Decor</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Design Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+  <!-- Layout root container -->
+  <div id="admin-layout-root">
+    
+    <!-- Mobile header menu -->
+    <div class="admin-mobile-header">
+      <h2>AURA ADMIN</h2>
+      <button class="admin-hamburger" id="admin-hamburger-toggle" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="admin-layout">
+      <!-- Sidebar Navigation root container -->
+      <aside class="admin-sidebar" id="admin-sidebar-nav"></aside>
+
+      <!-- Main Panel viewport -->
+      <main class="admin-main">
+        <header class="admin-header">
+          <h1>Products Inventory</h1>
+          <button type="button" class="btn-primary" id="add-product-btn" style="padding: 10px 20px; width:auto;">
+            <i class="fas fa-plus"></i> Add New Product
+          </button>
+        </header>
+
+        <!-- Products List Card -->
+        <div class="table-card">
+          <div class="table-header">
+            <h3>All Items</h3>
+            <div class="table-actions">
+              <input type="text" id="admin-search-input" class="search-input" placeholder="Search by name..." style="padding: 8px 15px 8px 35px; width:220px; font-size:0.85rem; box-shadow:none;">
+              <select id="admin-category-filter" class="filter-select" style="padding: 8px 16px; font-size:0.85rem; box-shadow:none;">
+                <option value="all">All Categories</option>
+                <!-- Categories populated dynamically -->
+              </select>
+            </div>
+          </div>
+          
+          <div class="admin-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Preview</th>
+                  <th>Product Name</th>
+                  <th>Collection</th>
+                  <th>Original Price</th>
+                  <th>Discount Price</th>
+                  <th>Discount %</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="products-table-body">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Add/Edit Product Modal dialog -->
+  <div class="admin-modal" id="product-modal">
+    <div class="modal-content" style="max-width: 700px;">
+      <div class="modal-header">
+        <h3 id="modal-title">Add Product</h3>
+        <button class="close-modal-btn" id="close-product-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="product-form">
+          <input type="hidden" id="edit-product-id" value="">
+          
+          <div class="input-group" style="margin-bottom: 20px;">
+            <label for="prod-name">Product Name *</label>
+            <input type="text" id="prod-name" required placeholder="E.g., Royal Gold Damask Wallpaper">
+          </div>
+
+          <div class="checkout-form-grid" style="margin-bottom: 20px;">
+            <div class="input-group">
+              <label for="prod-category">Collection Category *</label>
+              <select id="prod-category" required>
+                <!-- Categories list options -->
+              </select>
+            </div>
+            <div class="input-group" style="display:flex; align-items:center; flex-direction:row; gap:10px; margin-top:25px;">
+              <input type="checkbox" id="prod-active" checked style="width:18px; height:18px; accent-color:var(--accent-gold);">
+              <label for="prod-active" style="font-weight:600; cursor:pointer;">Visible on store</label>
+            </div>
+          </div>
+
+          <div class="input-group form-full-width textarea-group" style="margin-bottom: 20px;">
+            <label for="prod-desc">Product Description *</label>
+            <textarea id="prod-desc" rows="4" required placeholder="Describe product details, timber grades, thickness, color details..."></textarea>
+          </div>
+
+          <!-- Pricing Grid -->
+          <div class="checkout-form-grid" style="margin-bottom: 20px;">
+            <div class="input-group">
+              <label for="prod-original-price">Original Price * (Rate per sq ft or flat)</label>
+              <input type="number" id="prod-original-price" required min="0" placeholder="E.g., 1500">
+            </div>
+            <div class="input-group">
+              <label for="prod-discount-price">Discounted Price *</label>
+              <input type="number" id="prod-discount-price" required min="0" placeholder="E.g., 999">
+            </div>
+          </div>
+
+          <!-- Specifications textarea -->
+          <div class="input-group form-full-width textarea-group" style="margin-bottom: 20px;">
+            <label for="prod-specs">Technical Specifications (One key-value pair per line, separated by colon)</label>
+            <textarea id="prod-specs" rows="3" placeholder="E.g.,&#10;Material: Burma Teakwood&#10;Thickness: 45mm&#10;Finish: Matte varnish"></textarea>
+          </div>
+
+          <!-- Multiple Image selector -->
+          <div class="input-group" style="margin-bottom: 20px;">
+            <label>Product Images * (Upload one or more files. First image acts as cover)</label>
+            <div class="image-upload-wrapper">
+              <i class="fas fa-images upload-icon"></i>
+              <div class="upload-text">Upload photos directly to Cloudinary</div>
+              <div class="upload-hint">Supported formats: JPEG, PNG, WEBP (Max 2MB per file)</div>
+              <input type="file" id="prod-image-files" accept="image/*" multiple>
+            </div>
+            
+            <!-- Hidden JSON images container -->
+            <input type="hidden" id="prod-images-json" value="[]">
+            <!-- Image previews grid -->
+            <div class="image-preview-grid" id="prod-images-preview-root"></div>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" id="close-modal-footer-btn" style="padding: 10px 20px;">Cancel</button>
+        <button type="submit" form="product-form" class="btn-primary" style="padding: 10px 20px; width:auto;">Save Product</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Script controllers module -->
+  <script type="module" src="../js/admin-products.js"></script>
+</body>
+</html>

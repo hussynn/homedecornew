@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Thank you for your order. Your decor order has been placed successfully.">
+  <title>Order Placed Successfully | Aura Luxury Decor</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Core Design Styles -->
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+  <!-- Dynamic Header Navigation Root -->
+  <header id="header-root"></header>
+
+  <!-- Success content block -->
+  <main class="container">
+    <div class="success-wrapper">
+      
+      <div class="success-icon-container">
+        <i class="fas fa-check"></i>
+      </div>
+
+      <h2>Order Placed Successfully!</h2>
+      <p class="success-msg">Thank you for shopping with us. Your order details have been recorded. To expedite processing and confirm delivery schedule, please click the button below to send your order receipt to our WhatsApp support team.</p>
+
+      <!-- Details Summary Card -->
+      <div class="success-details-card" id="success-receipt-card">
+        <div class="spinner" style="margin: 20px auto;"></div>
+      </div>
+
+      <!-- Action Button Triggers -->
+      <div class="success-actions">
+        <button type="button" class="btn-primary btn-whatsapp" id="whatsapp-share-btn">
+          <i class="fab fa-whatsapp" style="font-size:1.2rem;"></i> Confirm Order on WhatsApp
+        </button>
+        <a href="./index.html" class="btn-secondary">
+          <i class="fas fa-shopping-bag"></i> Continue Shopping
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Global Footer Container -->
+  <footer id="footer-root"></footer>
+
+  <!-- Page Controller script -->
+  <script type="module" src="./js/success.js"></script>
+</body>
+</html>

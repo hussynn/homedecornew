@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | Aura Luxury Decor</title>
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Design Styles -->
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+
+  <!-- Layout Root dynamically injected by js/admin.js -->
+  <div id="admin-layout-root">
+    
+    <!-- Mobile header menu -->
+    <div class="admin-mobile-header">
+      <h2>AURA ADMIN</h2>
+      <button class="admin-hamburger" id="admin-hamburger-toggle" aria-label="Toggle Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <div class="admin-layout">
+      <!-- Sidebar Navigation root container -->
+      <aside class="admin-sidebar" id="admin-sidebar-nav"></aside>
+
+      <!-- Main Panel viewport -->
+      <main class="admin-main">
+        <header class="admin-header">
+          <h1>Dashboard Overview</h1>
+          <div class="admin-user-profile">
+            <div class="profile-avatar" id="admin-profile-avatar">A</div>
+            <div class="profile-info">
+              <h4 id="admin-profile-name">Admin</h4>
+              <p>Manager</p>
+            </div>
+          </div>
+        </header>
+
+        <!-- Stats Overview Widgets -->
+        <div class="admin-stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Total Orders</h3>
+              <p id="stat-total-orders">0</p>
+            </div>
+            <div class="stat-icon"><i class="fas fa-shopping-cart"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Active Products</h3>
+              <p id="stat-total-products">0</p>
+            </div>
+            <div class="stat-icon"><i class="fas fa-box"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Active Categories</h3>
+              <p id="stat-total-categories">0</p>
+            </div>
+            <div class="stat-icon"><i class="fas fa-list"></i></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Total Revenue</h3>
+              <p id="stat-total-revenue">₹0</p>
+            </div>
+            <div class="stat-icon"><i class="fas fa-rupee-sign"></i></div>
+          </div>
+        </div>
+
+        <!-- Orders Table Card -->
+        <div class="table-card">
+          <div class="table-header">
+            <h3>Recent Orders</h3>
+            <div class="table-actions">
+              <select id="order-status-filter" class="filter-select" style="padding: 8px 16px;">
+                <option value="all">All Orders</option>
+                <option value="pending">Pending</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="shipped">Shipped</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="admin-table-wrapper">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Product</th>
+                  <th>Dimensions</th>
+                  <th>Total Payable</th>
+                  <th>Payment</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="orders-table-body">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Order Details Viewer Modal popup -->
+  <div class="admin-modal" id="order-details-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modal-order-id">Order Details</h3>
+        <button class="close-modal-btn" id="close-order-modal">&times;</button>
+      </div>
+      <div class="modal-body" id="order-details-modal-body">
+        <!-- Rendered by js/admin.js -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-secondary" id="close-modal-footer-btn" style="padding: 10px 20px;">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dashboard Script controllers module -->
+  <script type="module" src="../js/admin.js"></script>
+</body>
+</html>
